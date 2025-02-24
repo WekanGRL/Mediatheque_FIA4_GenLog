@@ -5,6 +5,9 @@ import java.util.List;
 
 
 public class Mediatheque {
+	private	BookVisitor bookV = new BookVisitor();
+	private CDVisitor cdV = new CDVisitor();
+
 	private final List<Item> items = new LinkedList<>();
 
 	public void addItem(Item i) {
@@ -17,17 +20,13 @@ public class Mediatheque {
 	}
 	
 	public void printOnlyBooks() {
-		throw new UnsupportedOperationException("Not supported yet."); 
-		/*
-		//avec instanceof
-		for (Item i : items)
-			if (i instanceof Book)
-				System.out.println(i);
-		*/
+		for(Item i : items)
+			i.accept(bookV);
 	}
 
 	public void printOnlyCDs() {
-		throw new UnsupportedOperationException("Not supported yet."); 
+		for(Item i : items)
+			i.accept(cdV);
 	}
 
 }
